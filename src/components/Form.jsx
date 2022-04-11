@@ -1,15 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Form extends React.Component {
   render() {
-    const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3, cardImage, cardRare, cardTrunfo, hasTrunfo, isSaveButtonDisabled, onInputChange, onSaveButtonClick } = this.props;
+    const { cardName, cardDescription } = this.props;
+    const { cardAttr1, cardAttr2, cardAttr3 } = this.props;
+    const { cardImage, cardRare, cardTrunfo } = this.props;
+    // const { hasTrunfo } = this.props;
+    const { isSaveButtonDisabled, onInputChange, onSaveButtonClick } = this.props;
 
     return (
       <form>
         <label htmlFor="name-input">
           Nome da Carta:
           <input
-            name="name"
+            name="cardName"
             type="text"
             id="name-input"
             data-testid="name-input"
@@ -21,7 +26,7 @@ class Form extends React.Component {
         <label htmlFor="description-input">
           Descrição da Carta:
           <textarea
-            name="description"
+            name="cardDescription"
             id="description-input"
             data-testid="description-input"
             value={ cardDescription }
@@ -32,7 +37,7 @@ class Form extends React.Component {
         <label htmlFor="attr1-input">
           Primeiro Atributo:
           <input
-            name="attr1"
+            name="cardAttr1"
             type="number"
             id="attr1-input"
             data-testid="attr1-input"
@@ -44,7 +49,7 @@ class Form extends React.Component {
         <label htmlFor="attr2-input">
           Segundo Atributo:
           <input
-            name="attr2"
+            name="cardAttr2"
             type="number"
             id="attr2-input"
             data-testid="attr2-input"
@@ -56,7 +61,7 @@ class Form extends React.Component {
         <label htmlFor="attr3-input">
           Terceiro Atributo:
           <input
-            name="attr3"
+            name="cardAttr3"
             type="number"
             id="attr3-input"
             data-testid="attr3-input"
@@ -68,7 +73,7 @@ class Form extends React.Component {
         <label htmlFor="image-input">
           Caminho para Imagem:
           <input
-            name="image"
+            name="cardImage"
             type="text"
             id="image-input"
             data-testid="image-input"
@@ -80,7 +85,7 @@ class Form extends React.Component {
         <label htmlFor="rare-input">
           Raridade:
           <select
-            name="rare"
+            name="cardRare"
             id="rare-input"
             data-testid="rare-input"
             value={ cardRare }
@@ -95,7 +100,7 @@ class Form extends React.Component {
         <label htmlFor="trunfo-input">
           Super Trunfo
           <input
-            name="trunfo"
+            name="cardTrunfo"
             type="checkbox"
             id="trunfo-input"
             data-testid="trunfo-input"
@@ -115,5 +120,19 @@ class Form extends React.Component {
     );
   }
 }
+
+Form.propTypes = {
+  cardName: PropTypes.string.isRequired,
+  cardDescription: PropTypes.string.isRequired,
+  cardAttr1: PropTypes.string.isRequired,
+  cardAttr2: PropTypes.string.isRequired,
+  cardAttr3: PropTypes.string.isRequired,
+  cardImage: PropTypes.string.isRequired,
+  cardRare: PropTypes.string.isRequired,
+  cardTrunfo: PropTypes.bool.isRequired,
+  isSaveButtonDisabled: PropTypes.bool.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  onSaveButtonClick: PropTypes.func.isRequired,
+};
 
 export default Form;
