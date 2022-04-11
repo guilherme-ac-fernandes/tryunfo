@@ -5,14 +5,15 @@ import Card from './components/Card';
 const inicialStatus = {
   cardName: '',
   cardDescription: '',
-  cardAttr1: '',
-  cardAttr2: '',
-  cardAttr3: '',
+  cardAttr1: '0',
+  cardAttr2: '0',
+  cardAttr3: '0',
   cardImage: '',
   cardRare: 'normal',
   cardTrunfo: false,
   hasTrunfo: false,
   isSaveButtonDisabled: true,
+  saveInfo: [],
 };
 
 class App extends React.Component {
@@ -69,7 +70,10 @@ class App extends React.Component {
   }
 
   onSaveButtonClick = () => {
-
+    const { saveInfo } = this.state;
+    const object = { ...this.state };
+    saveInfo.push(object);
+    this.setState(inicialStatus);
   }
 
   render() {
