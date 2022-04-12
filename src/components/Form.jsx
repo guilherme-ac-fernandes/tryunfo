@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 
 class Form extends React.Component {
   render() {
+    const string = 'Você já tem um Super Trunfo em seu baralho';
     const { cardName, cardDescription } = this.props;
     const { cardAttr1, cardAttr2, cardAttr3 } = this.props;
     const { cardImage, cardRare, cardTrunfo } = this.props;
-    // const { hasTrunfo } = this.props;
+    const { hasTrunfo } = this.props;
     const { isSaveButtonDisabled, onInputChange, onSaveButtonClick } = this.props;
 
     return (
@@ -97,17 +98,34 @@ class Form extends React.Component {
           </select>
         </label>
 
-        <label htmlFor="trunfo-input">
-          Super Trunfo
-          <input
-            name="cardTrunfo"
-            type="checkbox"
-            id="trunfo-input"
-            data-testid="trunfo-input"
-            checked={ cardTrunfo }
-            onChange={ onInputChange }
-          />
-        </label>
+        {/* { hasTrunfo ? string
+          : <label htmlFor="trunfo-input">
+            Super Trunfo
+            <input
+              name="cardTrunfo"
+              type="checkbox"
+              id="trunfo-input"
+              data-testid="trunfo-input"
+              checked={ cardTrunfo }
+              onChange={ onInputChange }
+            />
+          </label>} */}
+
+        {/* Correção da formatação da Renderização Condicional proveniente da dúvida sanada no slack da Trybe pelo instrutor Ícaro Harry (turma 11) link: https://trybecourse.slack.com/archives/C01LCSLCZ8D/p1620168128455200 */}
+        {hasTrunfo ? (
+          <p data-testid="trunfo-input">{ string }</p>
+        ) : (
+          <label htmlFor="trunfo-input">
+            Super Trunfo
+            <input
+              name="cardTrunfo"
+              type="checkbox"
+              id="trunfo-input"
+              data-testid="trunfo-input"
+              checked={ cardTrunfo }
+              onChange={ onInputChange }
+            />
+          </label>)}
 
         <input
           type="button"
@@ -133,6 +151,7 @@ Form.propTypes = {
   isSaveButtonDisabled: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,
+  hasTrunfo: PropTypes.bool.isRequired,
 };
 
 export default Form;

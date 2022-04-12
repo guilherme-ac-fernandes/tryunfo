@@ -22,17 +22,34 @@ class App extends React.Component {
     this.state = (inicialStatus);
   }
 
+  hasCardTrunfo = () => {
+    const { cardTrunfo } = this.state;
+    if (cardTrunfo) {
+      this.setState({
+        hasTrunfo: true,
+      });
+    } else {
+      this.setState({ hasTrunfo: false });
+    }
+  }
+
   handleButtonStatus = () => {
+    this.hasCardTrunfo();
+    // Desestrutura valores do estado
     const { cardName, cardDescription, cardImage, cardRare } = this.state;
     const { cardAttr1, cardAttr2, cardAttr3, isSaveButtonDisabled } = this.state;
+    // Transforma string para número
     const number1 = parseInt(cardAttr1, 10);
     const number2 = parseInt(cardAttr2, 10);
     const number3 = parseInt(cardAttr3, 10);
+    // Soma dos valores
     const sumAttr = number1 + number2 + number3;
+    // Valores constantes para comparação
     const maxNumber = 90;
     const maxSum = 210;
     const zero = 0;
 
+    // Objeto contendo as verificações
     const validation = {
       cardName: cardName.length > 0,
       cardDescription: cardDescription.length > 0,
@@ -48,15 +65,11 @@ class App extends React.Component {
       sumMin: sumAttr >= zero,
     };
 
-    // Verificação se tudo é valido
+    // Se todos os valores do objeto acima for true, libera o botão
     if (Object.values(validation).every((item) => item === true)) {
-      this.setState({
-        isSaveButtonDisabled: false,
-      });
+      this.setState({ isSaveButtonDisabled: false });
     } else {
-      this.setState({
-        isSaveButtonDisabled: true,
-      });
+      this.setState({ isSaveButtonDisabled: true });
     }
     return isSaveButtonDisabled;
   }
@@ -67,13 +80,19 @@ class App extends React.Component {
     this.setState({
       [name]: value,
     }, () => this.handleButtonStatus(value));
+    // Ao passar a função de verificação como segundo parâmetro, ela será exercutada após a alteração no setStage
   }
 
   onSaveButtonClick = () => {
-    const { saveInfo } = this.state;
-    const object = { ...this.state };
-    saveInfo.push(object);
-    this.setState(inicialStatus);
+    // Destrutura estado contendo o array backup das cartas criadas
+    const { saveInfo, hasTrunfo } = this.state;
+    // Espalha o estado em um objeto para ser armazenado no array acima
+    const objectToSave = { ...this.state };
+    saveInfo.push(objectToSave);
+    // Reseta os valores dos inputs
+    const objectBackup = { ...inicialStatus };
+    objectBackup.hasTrunfo = hasTrunfo;
+    this.setState(objectBackup);
   }
 
   render() {
