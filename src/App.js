@@ -95,6 +95,10 @@ class App extends React.Component {
     this.setState(objectBackup);
   }
 
+  deleteCard = () => {
+
+  }
+
   render() {
     const { saveInfo } = this.state;
     return (
@@ -107,7 +111,17 @@ class App extends React.Component {
         />
         <Card { ...this.state } />
         <section>
-          {saveInfo.map((item, index) => <Card key={ index } { ...item } />)}
+          {saveInfo.map((item, index) => (
+            <>
+              <Card key={ index } { ...item } />
+              <button
+                data-testid="delete-button"
+                onClick={ this.deleteCard }
+              >
+                Excluir
+              </button>
+            </>
+          ))}
         </section>
       </div>
     );
