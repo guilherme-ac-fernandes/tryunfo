@@ -2,7 +2,7 @@ import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
 import './App.css';
-import DeleteButton from './components/DeleteButton';
+// import DeleteButton from './components/DeleteButton';
 
 const inicialStatus = {
   cardName: '',
@@ -30,9 +30,10 @@ class App extends React.Component {
   hasCardTrunfo = () => {
     const { cardTrunfo } = this.state;
     if (cardTrunfo) {
-      this.setState({
+      this.setState((old) => ({
+        ...old,
         hasTrunfo: true,
-      });
+      }));
     }
   }
 
@@ -70,9 +71,15 @@ class App extends React.Component {
 
     // Se todos os valores do objeto acima for true, libera o botão
     if (Object.values(validation).every((item) => item === true)) {
-      this.setState({ isSaveButtonDisabled: false });
+      this.setState((old) => ({
+        ...old,
+        isSaveButtonDisabled: false,
+      }));
     } else {
-      this.setState({ isSaveButtonDisabled: true });
+      this.setState((old) => ({
+        ...old,
+        isSaveButtonDisabled: true,
+      }));
     }
     return isSaveButtonDisabled;
   }
@@ -80,38 +87,33 @@ class App extends React.Component {
   onInputChange = ({ target }) => {
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
-    this.setState({
+    this.setState((old) => ({
+      ...old,
       [name]: value,
-    }, () => this.handleButtonStatus(value));
+    }), () => this.handleButtonStatus(value));
     // Ao passar a função de verificação como segundo parâmetro, ela será exercutada após a alteração no setStage
   }
 
   onSaveButtonClick = () => {
-    // Destrutura estado contendo o array backup das cartas criadas
-    const { saveInfo, hasTrunfo } = this.state;
-    // Espalha o estado em um objeto para ser armazenado no array acima
-    const objectToSave = { ...this.state };
-    saveInfo.push(objectToSave);
     // Reseta os valores dos inputs
-    inicialStatus.hasTrunfo = hasTrunfo;
-    this.setState(inicialStatus);
+    this.setState((old) => ({
+      ...inicialStatus,
+      hasTrunfo: old.hasTrunfo,
+      saveInfo: [...old.saveInfo, old],
+    }));
   }
 
   deleteCard = (index) => {
     const { saveInfo } = this.state;
-
     // Armazena informação se esse card era Super Trunfo
     const validation = saveInfo[index].hasTrunfo;
-
     // Remove informação do array mediante ao index
     saveInfo.splice(index, 1);
-
     // Renderização do display card salvas alterando o array do estado
     this.setState({
       ...inicialStatus,
       saveInfo: [...saveInfo],
     });
-
     // Modificação do estado de Super Trunfo se validation for True
     if (validation) {
       this.setState((old) => ({
@@ -186,14 +188,13 @@ class App extends React.Component {
             {trunfoFilter.map((item, index) => (
               <div key={ `container-key-${index}` }>
                 <Card key={ `key-${index}` } { ...item } />
-                {/* <input
-                type="button"
-                value="Excluir"
-                data-testid="delete-button"
-                onClick={ () => this.deleteCard(index) }
-                // Utilização do index como callback para encontrar qual card realizada com o auxílio do instrutor Summer Euller Braz
-              /> */}
-                <DeleteButton deleteCard={ () => this.deleteCard(index) } />
+                <input
+                  type="button"
+                  value="Excluir"
+                  data-testid="delete-button"
+                  onClick={ () => this.deleteCard(index) }
+                />
+                {/* <DeleteButton deleteCard={ () => this.deleteCard(index) } /> */}
               </div>
             ))}
           </section>
