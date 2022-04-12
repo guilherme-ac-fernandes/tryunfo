@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
+import './App.css';
 
 const inicialStatus = {
   cardName: '',
@@ -102,28 +103,30 @@ class App extends React.Component {
   render() {
     const { saveInfo } = this.state;
     return (
-      <div>
+      <main className="main-container">
         <h1>Tryunfo </h1>
-        <Form
-          { ...this.state }
-          onInputChange={ this.onInputChange }
-          onSaveButtonClick={ this.onSaveButtonClick }
-        />
-        <Card { ...this.state } />
-        <section>
+        <section className="create-card-container">
+          <Form
+            { ...this.state }
+            onInputChange={ this.onInputChange }
+            onSaveButtonClick={ this.onSaveButtonClick }
+          />
+          <Card { ...this.state } />
+        </section>
+        <section className="card-created-container">
           {saveInfo.map((item, index) => (
-            <>
-              <Card key={ index } { ...item } />
-              <button
+            <div key={ `container-key-${index}` }>
+              <Card key={ `key-${index}` } { ...item } />
+              <input
+                type="button"
+                value="Excluir"
                 data-testid="delete-button"
                 onClick={ this.deleteCard }
-              >
-                Excluir
-              </button>
-            </>
+              />
+            </div>
           ))}
         </section>
-      </div>
+      </main>
     );
   }
 }
