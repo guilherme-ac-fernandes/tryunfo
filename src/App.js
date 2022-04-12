@@ -17,6 +17,8 @@ const inicialStatus = {
   isSaveButtonDisabled: true,
   saveInfo: [],
   filterName: '',
+  filterRare: 'todas',
+  filterTrunfo: false,
 };
 
 class App extends React.Component {
@@ -120,10 +122,18 @@ class App extends React.Component {
   }
 
   render() {
-    const { saveInfo, filterName } = this.state;
-    const filterSaveInfo = saveInfo.filter((item) => {
+    const { saveInfo, filterName, filterRare, filterTrunfo } = this.state;
+    const nameFilter = saveInfo.filter((item) => {
       if (filterName === '') return true;
       return item.cardName.includes(filterName);
+    });
+    const rareFilter = nameFilter.filter((item) => {
+      if (filterRare === 'todas') return true;
+      return item.cardRare === filterRare;
+    });
+    const trunfoFilter = rareFilter.filter(({ cardTrunfo }) => {
+      if (filterTrunfo === false) return true;
+      return cardTrunfo === true;
     });
     return (
       <main className="main-container">
@@ -146,11 +156,34 @@ class App extends React.Component {
               value={ filterName }
               onChange={ this.onInputChange }
             />
+            <select
+              name="filterRare"
+              data-testid="rare-filter"
+              value={ filterRare }
+              onChange={ this.onInputChange }
+            >
+              <option value="todas">Todas</option>
+              <option value="normal">Normal</option>
+              <option value="raro">Raro</option>
+              <option value="muito raro">Muito Raro</option>
+            </select>
+
+            <label htmlFor="trunfo-filter">
+              Super Trunfo
+              <input
+                name="filterTrunfo"
+                type="checkbox"
+                id="trunfo-filter"
+                data-testid="trunfo-filter"
+                checked={ filterTrunfo }
+                onChange={ this.onInputChange }
+              />
+            </label>
 
           </div>
 
           <section className="card-created-container">
-            {filterSaveInfo.map((item, index) => (
+            {trunfoFilter.map((item, index) => (
               <div key={ `container-key-${index}` }>
                 <Card key={ `key-${index}` } { ...item } />
                 {/* <input
