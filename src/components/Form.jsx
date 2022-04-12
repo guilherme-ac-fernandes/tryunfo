@@ -98,20 +98,7 @@ class Form extends React.Component {
           </select>
         </label>
 
-        {/* { hasTrunfo ? string
-          : <label htmlFor="trunfo-input">
-            Super Trunfo
-            <input
-              name="cardTrunfo"
-              type="checkbox"
-              id="trunfo-input"
-              data-testid="trunfo-input"
-              checked={ cardTrunfo }
-              onChange={ onInputChange }
-            />
-          </label>} */}
-
-        {/* Correção da formatação da Renderização Condicional proveniente da dúvida sanada no slack da Trybe pelo instrutor Ícaro Harry (turma 11) link: https://trybecourse.slack.com/archives/C01LCSLCZ8D/p1620168128455200 */}
+        {/* Correção da formatação da Renderização Condicional proveniente da dúvida respondida no slack da Trybe pelo instrutor Ícaro Harry da turma 11 (link: https://trybecourse.slack.com/archives/C01LCSLCZ8D/p1620168128455200) */}
         {hasTrunfo ? (
           <p data-testid="trunfo-input">{ string }</p>
         ) : (
