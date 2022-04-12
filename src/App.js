@@ -2,6 +2,7 @@ import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
 import './App.css';
+import DeleteButton from './components/DeleteButton';
 
 const inicialStatus = {
   cardName: '',
@@ -15,6 +16,7 @@ const inicialStatus = {
   hasTrunfo: false,
   isSaveButtonDisabled: true,
   saveInfo: [],
+  filterName: '',
 };
 
 class App extends React.Component {
@@ -89,18 +91,40 @@ class App extends React.Component {
     const objectToSave = { ...this.state };
     saveInfo.push(objectToSave);
     // Reseta os valores dos inputs
-
     inicialStatus.hasTrunfo = hasTrunfo;
-
     this.setState(inicialStatus);
   }
 
-  deleteCard = () => {
-    console.log('deletar');
+  deleteCard = (index) => {
+    const { saveInfo } = this.state;
+
+    // Armazena informação se esse card era Super Trunfo
+    const validation = saveInfo[index].hasTrunfo;
+
+    // Remove informação do array mediante ao index
+    saveInfo.splice(index, 1);
+
+    // Renderização do display card salvas alterando o array do estado
+    this.setState({
+      ...inicialStatus,
+      saveInfo: [...saveInfo],
+    });
+
+    // Modificação do estado de Super Trunfo se validation for True
+    if (validation) {
+      this.setState((old) => ({
+        ...old,
+        hasTrunfo: false,
+      }));
+    }
   }
 
   render() {
-    const { saveInfo } = this.state;
+    const { saveInfo, filterName } = this.state;
+    const filterSaveInfo = saveInfo.filter((item) => {
+      if (filterName === '') return true;
+      return item.cardName.includes(filterName);
+    });
     return (
       <main className="main-container">
         <h1>Tryunfo </h1>
@@ -112,19 +136,36 @@ class App extends React.Component {
           />
           <Card { ...this.state } />
         </section>
-        <section className="card-created-container">
-          {saveInfo.map((item, index) => (
-            <div key={ `container-key-${index}` }>
-              <Card key={ `key-${index}` } { ...item } />
-              <input
+        <section className="card-saved-container">
+          {/* Seção que contém os filtros */}
+          <div>
+            <input
+              type="text"
+              name="filterName"
+              data-testid="name-filter"
+              value={ filterName }
+              onChange={ this.onInputChange }
+            />
+
+          </div>
+
+          <section className="card-created-container">
+            {filterSaveInfo.map((item, index) => (
+              <div key={ `container-key-${index}` }>
+                <Card key={ `key-${index}` } { ...item } />
+                {/* <input
                 type="button"
                 value="Excluir"
                 data-testid="delete-button"
-                onClick={ this.deleteCard }
-              />
-            </div>
-          ))}
+                onClick={ () => this.deleteCard(index) }
+                // Utilização do index como callback para encontrar qual card realizada com o auxílio do instrutor Summer Euller Braz
+              /> */}
+                <DeleteButton deleteCard={ () => this.deleteCard(index) } />
+              </div>
+            ))}
+          </section>
         </section>
+
       </main>
     );
   }
