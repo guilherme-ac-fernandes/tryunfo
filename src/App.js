@@ -29,8 +29,6 @@ class App extends React.Component {
       this.setState({
         hasTrunfo: true,
       });
-    } else {
-      this.setState({ hasTrunfo: false });
     }
   }
 
@@ -91,13 +89,14 @@ class App extends React.Component {
     const objectToSave = { ...this.state };
     saveInfo.push(objectToSave);
     // Reseta os valores dos inputs
-    const objectBackup = { ...inicialStatus };
-    objectBackup.hasTrunfo = hasTrunfo;
-    this.setState(objectBackup);
+
+    inicialStatus.hasTrunfo = hasTrunfo;
+
+    this.setState(inicialStatus);
   }
 
   deleteCard = () => {
-
+    console.log('deletar');
   }
 
   render() {
