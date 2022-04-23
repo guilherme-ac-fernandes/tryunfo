@@ -3,18 +3,46 @@ import PropTypes from 'prop-types';
 
 class Card extends React.Component {
   render() {
-    const { cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3 } = this.props;
-    const { cardImage, cardRare, cardTrunfo } = this.props;
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo } = this.props;
+
     return (
-      <section>
-        <h3 data-testid="name-card">{ cardName }</h3>
-        <img data-testid="image-card" src={ cardImage } alt={ cardName } />
-        <p data-testid="description-card">{ cardDescription }</p>
-        <p data-testid="attr1-card">{ cardAttr1 }</p>
-        <p data-testid="attr2-card">{ cardAttr2 }</p>
-        <p data-testid="attr3-card">{ cardAttr3 }</p>
-        <h4 data-testid="rare-card">{ cardRare }</h4>
-        { cardTrunfo ? <p data-testid="trunfo-card">Super Trunfo</p> : '' }
+      <section className="card-display">
+        <div>
+          <h3 data-testid="name-card">{ cardName }</h3>
+          <img data-testid="image-card" src={ cardImage } alt={ cardName } />
+          <p
+            data-testid="description-card"
+            className="cardDescription"
+          >
+            { cardDescription }
+          </p>
+          <section>
+            <div className="attr">
+              <span>Attr01</span>
+              <p data-testid="attr1-card">{ cardAttr1 }</p>
+            </div>
+            <div className="attr">
+              <span>Attr02</span>
+              <p data-testid="attr2-card">{ cardAttr2 }</p>
+            </div>
+            <div className="attr">
+              <span>Attr03</span>
+              <p data-testid="attr3-card">{ cardAttr3 }</p>
+            </div>
+            <aside>
+              <h4 data-testid="rare-card">{ cardRare }</h4>
+              { cardTrunfo ? <p data-testid="trunfo-card">Super Trunfo</p> : '' }
+            </aside>
+          </section>
+        </div>
       </section>
     );
   }

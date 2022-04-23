@@ -143,18 +143,33 @@ class App extends React.Component {
 
     return (
       <main className="main-container">
-        <h1>Tryunfo</h1>
-        <section className="create-card-container">
-          <Form
-            { ...this.state }
-            onInputChange={ this.onInputChange }
-            onSaveButtonClick={ this.onSaveButtonClick }
-          />
-          <Card { ...this.state } />
-        </section>
+        {/* <h1>Tryunfo</h1> */}
+        <div>
+
+          <section className="create-card-container">
+            <div className="create-card-div">
+              <h3>Adicionar nova carta</h3>
+              <Form
+                { ...this.state }
+                onInputChange={ this.onInputChange }
+                onSaveButtonClick={ this.onSaveButtonClick }
+              />
+            </div>
+
+            <div className="visualization-div">
+              <h3 className="title">Pré-visualização</h3>
+              <Card { ...this.state } />
+            </div>
+
+          </section>
+
+        </div>
+
         <section className="card-saved-container">
           {/* Seção que contém os filtros */}
-          <div>
+          <div className="saved-form">
+            <h3 className="all-card-title">Todas as cartas</h3>
+            <h4 className="all-card-filter-title">Filtros de Busca</h4>
             <input
               type="text"
               name="filterName"
@@ -189,17 +204,20 @@ class App extends React.Component {
           </div>
 
           <section className="card-created-container">
-            {trunfoFilter.map((item, index) => (
-              <div key={ `container-key-${index}` }>
-                <Card key={ `key-${index}` } { ...item } />
-                <input
-                  type="button"
-                  value="Excluir"
-                  data-testid="delete-button"
-                  onClick={ () => this.deleteCard(index) }
-                />
-              </div>
-            ))}
+            <main>
+              {trunfoFilter.map((item, index) => (
+                <div key={ `container-key-${index}` } className="div-card-created">
+                  <Card key={ `key-${index}` } { ...item } />
+                  <input
+                    type="button"
+                    value="Excluir"
+                    data-testid="delete-button"
+                    onClick={ () => this.deleteCard(index) }
+                  />
+                </div>
+              ))}
+            </main>
+
           </section>
         </section>
       </main>

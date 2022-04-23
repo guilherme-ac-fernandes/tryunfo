@@ -1,4 +1,5 @@
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -17,38 +18,237 @@
 .create-card-container {
   display: flex;
   justify-content: space-around;
+  width: 100%;
 }
 
 .create-card-container form, .create-card-container section {
-  border: solid 2px black;
   display: flex;
   flex-direction: column;
 }
 
-.create-card-container form {
-  padding: 20px;
-  width: 400px;
-}
-
-.create-card-container section {
-  padding: 20px;
-  width: 200px;
-}
-
-.card-created-container {
+.card-display {
   align-items: center;
+  background: white;
+  border: 2px solid #e1e5eb;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
   display: flex;
-  flex-wrap: wrap;
+  height: 359px;
   justify-content: center;
+  margin-bottom: 20px;
+  width: 268px;
+}
+
+.card-display div {
+  align-items: center;
+  background: #036b52;
+  border: 2px solid #036b52;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 329px;
+  line-height: 30px;
+  min-width: 228px;
+}
+
+.create-card-div h3 {
+  margin: 20px;
+}
+
+.card-display div h3 {
+  background: #023031;
+  border-radius: 10px 10px 0 0;
+  color: white;
+  height: 40px;
+  margin-top: 10px;
+  min-width: 208px;
+  text-align: center;
+}
+
+.card-display div img {
+  background-image: url('https://idealservis.com.br/portal/wp-content/uploads/2014/07/default-placeholder.png');
+  border: solid 1px #036b52;
+  height: 90px;
+  width: 208px;
+}
+
+.card-display div section {
+  background-color: white;
+}
+
+.card-display div .cardDescription {
+  background: #036b52;
+  color: white;
+  font-family: Epilogue , sans-serif;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 300;
+  height: 40px;
+  line-height: 13px;
+  padding: 10px;
+  width: 215px;
+  word-break: break-all;
+}
+
+.card-display div .attr {
+  background-color: white;
+  border: 1px solid #e1e5eb;
+  display: flex;
+  flex-direction: row;
+  height: 25px;
+  justify-content: space-around;
+}
+
+.card-form aside, .card-form aside p {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.card-display div aside {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.card-saved-container {
+  display: flex;
   margin-top: 30px;
 }
 
-.card-created-container div {
-  background-color: beige;
-  border: solid 2px grey;
+.card-saved-container .saved-form {
   display: flex;
   flex-direction: column;
-  margin: 10px;
+  margin: 30px;
   padding: 20px;
+  width: 25%;
+}
+
+.saved-form input, .saved-form select {
+  margin-top: 10px;
   width: 200px;
+}
+
+.all-card-title {
+  color: #023031;
+  font-size: 25px;
+  margin-bottom: 30px;
+}
+
+.all-card-filter-title {
+  color: #023031;
+}
+
+.filter-search-saved {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 30px;
+}
+
+.card-created-container {
+  width: 75%;
+}
+
+.card-created-container main {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 20px;
+}
+
+.card-created-container main div {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.div-card-created {
+  margin: 20px;
+}
+
+.card-created-container input {
+  background-color: white;
+  border: 2px solid #003be5;
+  border-radius: 2px;
+  box-sizing: border-box;
+  padding: 8px 32px;
+}
+
+.visualization-div {
+  align-items: center;
+  background: #023031;
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+  width: 50%;
+}
+
+.visualization-div .title {
+  color: white;
+  margin: 20px;
+  margin-bottom: 60px;
+}
+
+.create-card-div {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+  width: 50%;
+}
+
+.card-form {
+  width: 320px;
+}
+
+.card-form input {
+  margin: 8px 0;
+  width: 100%;
+}
+
+.card-form .input-description {
+  height: 30px;
+  margin: 8px 0;
+  resize: none;
+  width: 100%;
+}
+
+.card-form label {
+  margin-top: 10px;
+}
+
+.card-form .form-attr {
+  margin-left: 30px;
+  text-align: center;
+  width: 50px;
+}
+
+.card-form .form-select {
+  margin-left: 30px;
+}
+
+.super-truynfo-label {
+  align-items: center;
+  display: flex;
+  height: 30px;
+  justify-content: center;
+  width: 100%;
+}
+
+.super-truynfo-label span {
+  width: 50%;
+}
+
+.forms-button {
+  background: #003be5;
+  border: 2px solid #003be5;
+  border-radius: 2px;
+  box-sizing: border-box;
+  color: white;
+  height: 40px;
+  margin-top: 30px;
+  max-width: 115px;
+  padding: 8px 32px;
 }

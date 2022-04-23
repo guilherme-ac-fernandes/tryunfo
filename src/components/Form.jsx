@@ -4,14 +4,22 @@ import PropTypes from 'prop-types';
 class Form extends React.Component {
   render() {
     const string = 'Você já tem um Super Trunfo em seu baralho';
-    const { cardName, cardDescription } = this.props;
-    const { cardAttr1, cardAttr2, cardAttr3 } = this.props;
-    const { cardImage, cardRare, cardTrunfo } = this.props;
-    const { hasTrunfo } = this.props;
-    const { isSaveButtonDisabled, onInputChange, onSaveButtonClick } = this.props;
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+      hasTrunfo,
+      isSaveButtonDisabled,
+      onInputChange,
+      onSaveButtonClick } = this.props;
 
     return (
-      <form>
+      <form className="card-form">
         <label htmlFor="name-input">
           Nome da Carta:
           <input
@@ -32,12 +40,14 @@ class Form extends React.Component {
             data-testid="description-input"
             value={ cardDescription }
             onChange={ onInputChange }
+            className="input-description"
           />
         </label>
 
         <label htmlFor="attr1-input">
-          Primeiro Atributo:
+          Attr01:
           <input
+            className="form-attr"
             name="cardAttr1"
             type="number"
             id="attr1-input"
@@ -48,8 +58,9 @@ class Form extends React.Component {
         </label>
 
         <label htmlFor="attr2-input">
-          Segundo Atributo:
+          Attr02:
           <input
+            className="form-attr"
             name="cardAttr2"
             type="number"
             id="attr2-input"
@@ -60,8 +71,9 @@ class Form extends React.Component {
         </label>
 
         <label htmlFor="attr3-input">
-          Terceiro Atributo:
+          Attr03:
           <input
+            className="form-attr"
             name="cardAttr3"
             type="number"
             id="attr3-input"
@@ -86,6 +98,7 @@ class Form extends React.Component {
         <label htmlFor="rare-input">
           Raridade:
           <select
+            className="form-select"
             name="cardRare"
             id="rare-input"
             data-testid="rare-input"
@@ -99,20 +112,22 @@ class Form extends React.Component {
         </label>
 
         {/* Correção da formatação da Renderização Condicional proveniente da dúvida respondida no slack da Trybe pelo instrutor Ícaro Harry da turma 11 (link: https://trybecourse.slack.com/archives/C01LCSLCZ8D/p1620168128455200) */}
-        {hasTrunfo ? (
-          <p data-testid="trunfo-input">{ string }</p>
-        ) : (
-          <label htmlFor="trunfo-input">
-            Super Trunfo
-            <input
-              name="cardTrunfo"
-              type="checkbox"
-              id="trunfo-input"
-              data-testid="trunfo-input"
-              checked={ cardTrunfo }
-              onChange={ onInputChange }
-            />
-          </label>)}
+        <aside>
+          {hasTrunfo ? (
+            <p data-testid="trunfo-input">{ string }</p>
+          ) : (
+            <label htmlFor="trunfo-input" className="super-truynfo-label">
+              <span>Super Trunfo</span>
+              <input
+                name="cardTrunfo"
+                type="checkbox"
+                id="trunfo-input"
+                data-testid="trunfo-input"
+                checked={ cardTrunfo }
+                onChange={ onInputChange }
+              />
+            </label>)}
+        </aside>
 
         <input
           type="button"
@@ -120,6 +135,7 @@ class Form extends React.Component {
           data-testid="save-button"
           disabled={ isSaveButtonDisabled }
           onClick={ onSaveButtonClick }
+          className="forms-button"
         />
       </form>
     );
