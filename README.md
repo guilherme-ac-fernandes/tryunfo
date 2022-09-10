@@ -1,16 +1,22 @@
-# 🚧 README em construção 🚧
+# Projeto Tryunfo 🃏
 
-<!-- Olá, Tryber!
+Aplicação web construída para criação de cartas estilo o jogo Super Trunfo. Ao utilizar essa aplicação uma pessoa usuária será capaz de criar um baralho com tema livre, podendo: adicionar, visualizar e remover as cartas.
 
-Esse é apenas um arquivo inicial para o README do seu projeto.
+* Construída utilizado React e CSS3.
 
-É essencial que você preencha esse documento por conta própria, ok?
+### Instruções
 
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
+- Para rodar a aplicação localmente, realize o clone do projeto e utilize os comandos a seguir para inicializar:
 
-⚠️ IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
+```
+npm install // para instalar as dependências
+npm start // para iniciar a aplicação
+```
 
--->
+### Demonstração
+
+👨🏻‍💻 **Acessar:** _[Clique Aqui](https://tryunfo-one.vercel.app)_
+
+<p align="center">
+  <img src="" alt="Tryunfo Gif - Demostração"/>
+</p>
