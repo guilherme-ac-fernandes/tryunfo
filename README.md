@@ -18,5 +18,5 @@ npm start // para iniciar a aplicação
 👨🏻‍💻 **Acessar:** _[Clique Aqui](https://tryunfo-one.vercel.app)_
 
 <p align="center">
-  <img src="" alt="Tryunfo Gif - Demostração"/>
+  <img src="https://github.com/guilherme-ac-fernandes/tryunfo/blob/main/tryunfo.png" alt="Tryunfo Gif - Demostração"/>
 </p>
